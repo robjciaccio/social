@@ -1,0 +1,19 @@
+.post_container {
+  align-items: center;
+  width: 500px;
+  height: 200px;
+  box-shadow: 1px 4px 5px 0 gray;
+  margin: auto;
+  border-radius: 2px;
+  text-align: center;
+}
+
+.interaction {
+  color: blue;
+  position: relative;
+  float: left;
+  min-height: 150px;
+  display: flex;
+  align-items: flex-end;
+  padding-left: 15px;
+}

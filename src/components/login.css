@@ -1,0 +1,13 @@
+.login_component {
+  width: 400px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: 0;
+  padding-left: 10px;
+  box-shadow: 1px 4px 5px 0 gray;
+  border-radius: 2px;
+}
+
+.errorMessage {
+  color: red;
+}
