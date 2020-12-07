@@ -17,6 +17,7 @@ const Home = (props) => {
         })
         const responseData = await response.json()
         setPosts(responseData.posts)
+        console.log(responseData.posts)
       } catch (err) {}
     }
     fetchPosts()

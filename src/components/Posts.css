@@ -6,14 +6,24 @@
   margin: auto;
   border-radius: 2px;
   text-align: center;
+
+  padding-bottom: 10px;
+  margin-bottom: 19px;
+  margin-top: 5px;
 }
 
-.interaction {
-  color: blue;
-  position: relative;
+/* .interaction {
   float: left;
-  min-height: 150px;
+  padding-bottom: 8px;
   display: flex;
+  position: relative;
   align-items: flex-end;
-  padding-left: 15px;
-}
+} */
+
+/* color: blue;
+
+
+min-height: 150px;
+
+
+padding-left: 15px; */

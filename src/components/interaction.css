@@ -1,3 +1,9 @@
 .interact {
   color: darkblue;
+
+  padding-bottom: 8px;
+
+  width: 30%;
+
+  z-index: 2;
 }

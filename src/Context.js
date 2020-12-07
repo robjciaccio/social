@@ -10,11 +10,15 @@ const ContextProvider = ({ children }) => {
   const [userId, setUserId] = useState('')
   const [first_name, setFirst_name] = useState('')
   const [last_name, setLast_name] = useState('')
-  const [image, setImage] = useState('')
+  const [image, setImage] = useState()
 
   const handleText = (word) => {
     setText(word)
   }
+
+  useEffect(() => {
+    console.log(image)
+  }, [image])
 
   const handleSubmit = (post) => {
     setPosts((prevPosts) => [...prevPosts, post])
@@ -30,10 +34,6 @@ const ContextProvider = ({ children }) => {
     console.log(userId)
   }
 
-  const postsHandler = ({ user_id, content }) => {
-    setPosts(content)
-  }
-
   const imageHandler = ({ name }) => {
     setImage(name)
     console.log(image)
@@ -45,7 +45,10 @@ const ContextProvider = ({ children }) => {
     setPosts(responseData.posts)
     setFirst_name(responseData.first_name)
     setLast_name(responseData.last_name)
+    setImage(responseData.image)
     localStorage.setItem('userData', JSON.stringify({ responseData }))
+
+    console.log(responseData)
   }
 
   useEffect(() => {

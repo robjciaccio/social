@@ -21,7 +21,7 @@ const Form = (props) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          content,
+          content: content,
           user_id: userId,
         }),
       })

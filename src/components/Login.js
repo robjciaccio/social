@@ -13,7 +13,7 @@ const Login = (props) => {
 
   let history = useHistory()
 
-  let userId, first_name, last_name, token
+  let userId, first_name, last_name, token, image
 
   const loginUser = async (e) => {
     e.preventDefault()
@@ -34,6 +34,7 @@ const Login = (props) => {
           first_name,
           last_name,
           token,
+          image,
         }),
       })
       const responseData = await response.json()

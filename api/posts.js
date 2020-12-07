@@ -14,6 +14,8 @@ postsRouter.get('/user/:uid', postsController.getPostByUid)
 
 postsRouter.post('/', postsController.createPost)
 
+postsRouter.post('/like', postsController.likePost)
+
 postsRouter.delete('/:pid', postsController.deletePost)
 
 module.exports = postsRouter

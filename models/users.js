@@ -9,6 +9,7 @@ const usersSchema = Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true, minlength: 6 },
   posts: [{ type: mongoose.Types.ObjectId, required: false, ref: 'Posts' }],
+  image: { type: String, required: true },
 })
 
 usersSchema.plugin(uniqueValidator)

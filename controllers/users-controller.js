@@ -73,6 +73,7 @@ const signup = async (req, res, next) => {
     email,
     password: hashedPassword,
     posts: [],
+    image: req.file.path,
   })
 
   try {
@@ -104,6 +105,7 @@ const signup = async (req, res, next) => {
     posts: createdUser.posts,
     first_name: createdUser.first_name,
     last_name: createdUser.last_name,
+    image: createdUser.image,
   })
 
   // toObject turns into js object //getters: true removes underscore infront of ID
@@ -150,6 +152,7 @@ const login = async (req, res, next) => {
         first_name: existingUser.first_name,
         last_name: existingUser.last_name,
         posts: existingUser.posts,
+        image: existingUser.image,
       },
       'secret_key',
       { expiresIn: '24h' }
@@ -166,6 +169,7 @@ const login = async (req, res, next) => {
     posts: existingUser.posts,
     email: existingUser.email,
     token: token,
+    image: existingUser.image,
   })
 }
 

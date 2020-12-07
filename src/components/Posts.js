@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Interaction from './Interaction'
 import NamePlate from '../components/NamePlate'
 import './Posts.css'
+import ProfileCard from './ProfileCard'
 
 const Posts = ({ posts }) => {
   const [users, setUsers] = useState([])
@@ -17,26 +18,30 @@ const Posts = ({ posts }) => {
       setUsers(responseData)
     }
     fetchUsers()
-  }, [])
+  }, [posts])
 
   let mappedPosts
+  let foundUser
   const flip = posts.reverse()
 
-  mappedPosts = posts.map((post, i) => {
-    const foundUser = users.find((user) => user._id === post.user_id)
+  console.log(users)
+  console.log(flip)
+
+  mappedPosts = flip.map((post, i) => {
+    foundUser = users.find((user) => user._id === post.user_id)
 
     return (
       <div key={i} className='post_container'>
         <div>
-          <NamePlate
+          <ProfileCard
             first_name={foundUser.first_name}
             last_name={foundUser.last_name}
+            image={foundUser.image}
           />
         </div>
         <h1 className='post'>{post.content}</h1>
-        <div className='interaction'>
-          <Interaction />
-        </div>
+
+        <Interaction />
       </div>
     )
   })
