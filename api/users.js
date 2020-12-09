@@ -4,9 +4,10 @@ const { check } = require('express-validator')
 const usersController = require('../controllers/users-controller')
 const fileUpload = require('../middleware/file-upload')
 
-usersRouter.get('/', usersController.getUsers)
 const postsRouter = require('./posts')
 usersRouter.use('/posts', postsRouter)
+
+usersRouter.get('/', usersController.getUsers)
 
 usersRouter.post(
   '/signup',

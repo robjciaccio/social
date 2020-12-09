@@ -1,6 +1,8 @@
 const { validationResult } = require('express-validator')
 const Post = require('../models/posts')
 const User = require('../models/users')
+const Like = require('../models/likes')
+const Comment = require('../models/comments')
 const mongoose = require('mongoose')
 
 const HttpError = require('../models/http-error')
@@ -105,61 +107,6 @@ const createPost = async (req, res, next) => {
   res.status(201).json({ user: createdPost.toObject({ getters: true }) })
 }
 
-const likePost = async (req, res, next) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return next(new HttpError('Invalid inputs passed'))
-  }
-
-  const { content, user_id, post_id } = req.body
-  const now = Date()
-
-  const postLike = new Post({
-    content,
-    user_id,
-    likes: [],
-    post_id,
-    date: now,
-  })
-
-  let foundUser
-
-  try {
-    foundUser = await User.findById(user_id)
-  } catch (err) {
-    const error = new HttpError('creating post failed', 500)
-    return next(error)
-  }
-
-  if (!user) {
-    const error = new HttpError('Could not find user to create post', 404)
-    return next(error)
-  }
-
-  let foundPost
-
-  try {
-    foundPost = await Post.findById(post_id)
-  } catch (err) {
-    console.log('error line 144 of posts controller')
-    return next(err)
-  }
-
-  try {
-    const sess = await mongoose.startSession()
-    sess.startTransaction()
-    await postLike.save({ session: sess })
-    foundPost.likes.push(postLike.user_id)
-    await foundPost.save({ session: sess })
-    await sess.commitTransaction()
-  } catch (err) {
-    const error = new HttpError('Your post was not created successfully', 500)
-    return next(error)
-  }
-
-  res.status(201).json({ user: foundPost.toObject({ getters: true }) })
-}
-
 const deletePost = async (req, res, next) => {
   const postId = req.params.pid
 
@@ -196,4 +143,3 @@ exports.deletePost = deletePost
 exports.getPostById = getPostById
 exports.getPosts = getPosts
 exports.getPostByUid = getPostByUid
-exports.likePost = likePost

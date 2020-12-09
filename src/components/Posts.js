@@ -18,7 +18,7 @@ const Posts = ({ posts }) => {
       setUsers(responseData)
     }
     fetchUsers()
-  }, [posts])
+  }, [])
 
   let mappedPosts
   let foundUser
@@ -41,7 +41,7 @@ const Posts = ({ posts }) => {
         </div>
         <h1 className='post'>{post.content}</h1>
 
-        <Interaction />
+        <Interaction posts={posts} />
       </div>
     )
   })
